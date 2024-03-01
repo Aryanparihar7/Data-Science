@@ -1,0 +1,31 @@
+import pandas as pd
+import numpy as np
+
+data = pd.read_csv("data.csv")
+
+
+sample_size = 30  # we have taken the sample of 30
+sample = data.sample(sample_size)
+
+
+population_mean = data.mean()
+
+sample_mean = sample.mean()
+
+# Comparing population mean and sample mean
+mean_difference = np.abs(population_mean - sample_mean)
+
+# Set a threshold for mean difference to determine if the sample represents population
+threshold = 0.05  # You can adjust the threshold as needed
+
+# Check if the sample represents population or not
+if (mean_difference <= threshold).all():
+    message = "The selected sample is representing the population."
+else:
+    message = "The selected sample is not representing the population."
+
+# Display results
+print("Population Mean:\n", population_mean)
+print("\nSample Mean:\n", sample_mean)
+print("\nMean Difference:\n", mean_difference)
+
